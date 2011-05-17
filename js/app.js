@@ -1,29 +1,35 @@
-jo.load();
 
-var App = (function() {
-    var cssnode;
+var App = {
+    load: load
+};
 
-    function init() {
-        cssnode = joDOM.applyCSS(".htmlgroup { background: #fff; }");
+function load() {
+    jo.load();
 
-        var menu, list;
-        menu = new joCard([
-            list = new joMenu([
-                {title: 'Title', id: 'title' }
-                ])
-            ]).setTitle("AINotify");
-    };
+    document.body.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        joEvent.stop(e);
+    }, false);
 
-    function click() {
-        stack.push(page);
-    };
+    this.scn = new joScreen(
+        new joContainer([
+            new joFlexcol([
+                this.nav = new joNavbar(),
+                this.stack = new joStackScroller()
+            ]),
+            this.toolbar = new joToolbar("footer")
+        ]).setStyle( {
+            position: "absolute", 
+            top: "0",
+            left: "0",
+            bottom: "0",
+            right: "0"
+        })
+    );
 
-    function back() {
-        stack.pop();
-    };
+    this.nav.setStack(this.stack);
+    
+    joGesture.backEvent.subscribe(this.stack.pop, this.stack);
 
-    return {
-        "init": init,
-        "getStack": function() { return stack; },
-    };
-}());
+    this.stack.push(joCache.get("menu"));
+};
