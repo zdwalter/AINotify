@@ -8,13 +8,14 @@ joCache.set("map", function() {
 
     card.setTitle("Map");
     //TODO: load map
-    var myOptions = {
-        zoom: 6,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-    App.map = new google.maps.Map(joDOM.get("map_canvas"), myOptions);
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
+            var myOptions = {
+                zoom: 6,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+            App.map = new google.maps.Map(joDOM.get("map_canvas"), myOptions);
             App.initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
             App.infowindow = new google.maps.InfoWindow();
             //contentString = "Location found using W3C standard";
