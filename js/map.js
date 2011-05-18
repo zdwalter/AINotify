@@ -1,8 +1,43 @@
 
 joCache.set("map", function() {
+    var size="100%";
+    var buttonGroup = new joGroup([
+            //TODO: use joGesture
+            //TODO: replace with image,
+            //TODO: set location to overlay on map
+            new joFlexrow([
+                new joFlexcol([
+                    new joFlexrow([
+                        new joButton("<<"),
+                        new joButton("^"),
+                        new joButton(">"),
+                        ]),
+                    new joFlexrow([
+                        new joButton("+"),
+                        new joButton("V"),
+                        new joButton("-"),
+                        ]),
+                    ]),
+                    new joFlexcol([
+                        new joButton("What").selectEvent.subscribe(function() {
+                            display("tag");
+                            }),
+                        new joFlexrow([
+                            new joButton("@"),
+                            new joButton("."),
+                            ]),
+                        ]),
+
+                ]),
+            ]);
+
     var card = new joCard([
-        new joView("<div id='map_canvas' style='height: 280px; width: 280px; align: center'></div>"),
-        new joLabel("Where you are now")
+        new joGroup([
+            new joLabel("Where"),
+            new joView("<div id='map_canvas' style='height: 100%; width: 100%; align: center'></div>").setStyle({ height: "160px"}),
+
+            buttonGroup,
+            ])
         ]);
 
     card.setTitle("Map");

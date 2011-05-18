@@ -17,7 +17,7 @@ function load() {
                 this.nav = new joNavbar(),
                 this.stack = new joStackScroller()
             ]),
-            this.toolbar = new joToolbar("footer")
+            //this.toolbar = new joToolbar("footer")
         ]).setStyle( {
             position: "absolute", 
             top: "0",
@@ -31,5 +31,9 @@ function load() {
     
     joGesture.backEvent.subscribe(this.stack.pop, this.stack);
 
-    this.stack.push(joCache.get("menu"));
+    display("menu");
+};
+
+function display(id) {
+    App.stack.push(joCache.get(id));
 };

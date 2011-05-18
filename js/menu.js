@@ -2,10 +2,10 @@
 joCache.set("menu", function() {
     var card = new joCard([
         new joMenu([
-            { title: 'Map', id: 'map' },
-            { title: 'Tag', id: 'tag' }
+            { title: 'New', id: 'map' },
+            { title: 'Check', id: 'events' }
             ]).selectEvent.subscribe(function(id) {
-                App.stack.push(joCache.get(id));
+                    display(id);
                 })
     ]);
 
