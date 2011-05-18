@@ -1,7 +1,7 @@
 
 joCache.set("map", function() {
     var card = new joCard([
-        new joView("<div id='map_canvas' style='height: 320px; width: 320px;'></div>"),
+        new joView("<div id='map_canvas' style='height: 280px; width: 280px; align: center'></div>"),
         new joLabel("Where you are now")
         ]);
 
